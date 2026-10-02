@@ -1,0 +1,835 @@
+[
+  {
+    "id": 1,
+    "en": { "title": "WW2: The Last Bunker", "desc": "Defend your post in the French countryside." },
+    "fr": { "title": "2GM : Le Dernier Bunker", "desc": "Défendez votre poste dans la campagne française." },
+    "genre": "Historical",
+    "subgenre": "Military",
+    "dangerosity": 8,
+    "tone": ["dark", "tense", "gritty"],
+    "aesthetics": {
+      "style": "cinematic-realism",
+      "palette": ["muted-greens", "mud-browns", "grey-skies"],
+      "mood": "desperate"
+    },
+    "tags": ["war", "ww2", "survival", "military", "bunker", "france"],
+    "image": "/world/1.png",
+    "imagePrompt": "A heavily damaged WWII bunker in the French countryside at dusk, soldiers defending the last position, mud and barbed wire, dramatic low lighting, cinematic realism, photorealistic"
+  },
+  {
+    "id": 2,
+    "en": { "title": "Cyber-Samurai Tokyo", "desc": "Honor and steel in a neon-drenched future." },
+    "fr": { "title": "Cyber-Samouraï Tokyo", "desc": "Honneur et acier dans un futur néon." },
+    "genre": "Cyberpunk",
+    "subgenre": "Samurai-Noir",
+    "dangerosity": 7,
+    "tone": ["stylish", "tense", "honorable"],
+    "aesthetics": {
+      "style": "neon-noir",
+      "palette": ["electric-blue", "magenta", "deep-black"],
+      "mood": "intense"
+    },
+    "tags": ["cyberpunk", "samurai", "japan", "neon", "future", "katana"],
+    "image": "/world/2.png",
+    "imagePrompt": "A cyberpunk Tokyo street at night, a samurai with glowing cybernetic implants holding a katana, neon signs reflecting in rain puddles, ultra-detailed, cinematic"
+  },
+  {
+    "id": 3,
+    "en": { "title": "Zerg Hive Breach", "desc": "Survive the infestation in deep space." },
+    "fr": { "title": "Invasion Zergs", "desc": "Survivez à l'infestation dans l'espace lointain." },
+    "genre": "Sci-Fi Horror",
+    "subgenre": "Alien Survival",
+    "dangerosity": 9,
+    "tone": ["terrifying", "claustrophobic", "desperate"],
+    "aesthetics": {
+      "style": "biomechanical-horror",
+      "palette": ["sickly-purple", "acid-green", "void-black"],
+      "mood": "dread"
+    },
+    "tags": ["aliens", "space", "horror", "survival", "hive", "infestation"],
+    "image": "/world/3.png",
+    "imagePrompt": "Interior of an alien-infested space station, organic biomass covering the walls, swarms of chitinous creatures in the corridors, emergency red lighting, extreme detail, horror atmosphere"
+  },
+  {
+    "id": 4,
+    "en": { "title": "Zombie London", "desc": "Escaping the undead in the fog." },
+    "fr": { "title": "Londres Zombie", "desc": "Échapper aux morts-vivants dans le brouillard." },
+    "genre": "Horror",
+    "subgenre": "Zombie Apocalypse",
+    "dangerosity": 8,
+    "tone": ["bleak", "tense", "gothic"],
+    "aesthetics": {
+      "style": "gothic-realism",
+      "palette": ["ash-grey", "blood-red", "fog-white"],
+      "mood": "desolate"
+    },
+    "tags": ["zombies", "london", "fog", "undead", "apocalypse", "survival"],
+    "image": "/world/4.png",
+    "imagePrompt": "Fog-drenched zombie apocalypse in London, Westminster Bridge overrun with shambling undead, Big Ben crumbling in the background, eerie grey atmosphere, cinematic horror"
+  },
+  {
+    "id": 5,
+    "en": { "title": "Mars Colonist", "desc": "Build a life on the red planet." },
+    "fr": { "title": "Colon de Mars", "desc": "Construisez une vie sur la planète rouge." },
+    "genre": "Sci-Fi",
+    "subgenre": "Space Survival",
+    "dangerosity": 6,
+    "tone": ["hopeful", "isolated", "pioneering"],
+    "aesthetics": {
+      "style": "hard-sci-fi",
+      "palette": ["rust-red", "dusty-orange", "silver-grey"],
+      "mood": "frontier"
+    },
+    "tags": ["mars", "space", "colonist", "survival", "planet", "future"],
+    "image": "/world/5.png",
+    "imagePrompt": "Mars colony dome under a rust-red sky, astronaut in a pressure suit surveying the barren landscape, solar panels and habitat modules in the distance, photorealistic sci-fi"
+  },
+  {
+    "id": 6,
+    "en": { "title": "Victorian Steampunk", "desc": "Inventions and smog." },
+    "fr": { "title": "Steampunk Victorien", "desc": "Inventions et smog." },
+    "genre": "Steampunk",
+    "subgenre": "Victorian Alt-History",
+    "dangerosity": 5,
+    "tone": ["eccentric", "industrial", "adventurous"],
+    "aesthetics": {
+      "style": "steampunk-baroque",
+      "palette": ["brass-gold", "coal-black", "steam-white"],
+      "mood": "inventive"
+    },
+    "tags": ["steampunk", "victorian", "airship", "gears", "invention", "london"],
+    "image": "/world/6.png",
+    "imagePrompt": "Victorian steampunk city with massive brass clockwork towers, airships docking at a smog-covered sky harbor, gas lanterns glowing, intricate gears and pipes everywhere, detailed illustration"
+  },
+  {
+    "id": 7,
+    "en": { "title": "Post-Apocalyptic Desert", "desc": "Water is life." },
+    "fr": { "title": "Désert Post-Apocalyptique", "desc": "L'eau est la vie." },
+    "genre": "Post-Apocalyptic",
+    "subgenre": "Desert Survival",
+    "dangerosity": 8,
+    "tone": ["brutal", "desperate", "lawless"],
+    "aesthetics": {
+      "style": "wasteland-grit",
+      "palette": ["sand-yellow", "scorched-orange", "bleached-white"],
+      "mood": "parched"
+    },
+    "tags": ["desert", "post-apocalyptic", "survival", "wasteland", "water", "ruins"],
+    "image": "/world/7.png",
+    "imagePrompt": "Post-apocalyptic desert wasteland, rusted vehicles half-buried in sand, a lone scavenger carrying a water canister under a blazing sun, collapsed city ruins on the horizon, photorealistic"
+  },
+  {
+    "id": 8,
+    "en": { "title": "Medieval High Fantasy", "desc": "Magic and dragons." },
+    "fr": { "title": "Fantasy Médiévale", "desc": "Magie et dragons." },
+    "genre": "Fantasy",
+    "subgenre": "High Fantasy",
+    "dangerosity": 6,
+    "tone": ["epic", "wondrous", "heroic"],
+    "aesthetics": {
+      "style": "epic-fantasy-painting",
+      "palette": ["emerald-green", "royal-blue", "golden-yellow"],
+      "mood": "grand"
+    },
+    "tags": ["fantasy", "medieval", "dragons", "magic", "knights", "epic"],
+    "image": "/world/8.png",
+    "imagePrompt": "A vast medieval fantasy kingdom, a dragon soaring over a castle spire, knights in gleaming armor in the foreground, magical aurora in the sky, epic oil painting style, ultra-detailed"
+  },
+  {
+    "id": 9,
+    "en": { "title": "Lovecraftian Harbor", "desc": "Ancient secrets emerge." },
+    "fr": { "title": "Port Lovecraftien", "desc": "Des secrets ancestraux émergent." },
+    "genre": "Horror",
+    "subgenre": "Cosmic Horror",
+    "dangerosity": 9,
+    "tone": ["eldritch", "terrifying", "mysterious"],
+    "aesthetics": {
+      "style": "cosmic-horror",
+      "palette": ["deep-teal", "sickly-green", "shadow-black"],
+      "mood": "unknowable"
+    },
+    "tags": ["lovecraft", "horror", "cosmic", "sea", "eldritch", "mystery"],
+    "image": "/world/9.png",
+    "imagePrompt": "A foggy New England harbor at midnight, massive tentacles emerging from the black water, a crumbling lighthouse casting pale light, a lone terrified figure on the dock, Lovecraftian horror art"
+  },
+  {
+    "id": 10,
+    "en": { "title": "Galactic Trade Empire", "desc": "Space merchant life." },
+    "fr": { "title": "Empire Commercial Galactique", "desc": "Vie de marchand de l'espace." },
+    "genre": "Sci-Fi",
+    "subgenre": "Space Opera",
+    "dangerosity": 5,
+    "tone": ["political", "ambitious", "cosmopolitan"],
+    "aesthetics": {
+      "style": "space-opera",
+      "palette": ["starfield-blue", "golden-amber", "chrome-silver"],
+      "mood": "grand"
+    },
+    "tags": ["space", "trade", "empire", "merchant", "aliens", "politics"],
+    "image": "/world/10.png",
+    "imagePrompt": "A massive alien space station marketplace, dozens of alien species trading goods, starships docking through transparent domes, colorful nebula visible through the viewport, vibrant sci-fi illustration"
+  },
+  {
+    "id": 11,
+    "en": { "title": "Dystopian Megacity", "desc": "Survive the corporate grind." },
+    "fr": { "title": "Mégapole Dystopique", "desc": "Survivez à la machine corporative." },
+    "genre": "Sci-Fi",
+    "subgenre": "Dystopia",
+    "dangerosity": 7,
+    "tone": ["oppressive", "bleak", "rebellious"],
+    "aesthetics": {
+      "style": "cyberpunk-dystopia",
+      "palette": ["concrete-grey", "neon-orange", "smog-yellow"],
+      "mood": "oppressed"
+    },
+    "tags": ["dystopia", "corporate", "megacity", "surveillance", "future", "rebellion"],
+    "image": "/world/11.png",
+    "imagePrompt": "An oppressive dystopian megacity, towering corporate skyscrapers covered in propaganda screens, crowded lower streets full of masked citizens, surveillance drones patrolling, dark sci-fi atmosphere"
+  },
+  {
+    "id": 12,
+    "en": { "title": "Wild West Supernatural", "desc": "Cowboys meet spirits." },
+    "fr": { "title": "Far West Surnaturel", "desc": "Cowboys rencontrent les esprits." },
+    "genre": "Western",
+    "subgenre": "Supernatural Western",
+    "dangerosity": 7,
+    "tone": ["eerie", "rugged", "mysterious"],
+    "aesthetics": {
+      "style": "gothic-western",
+      "palette": ["sunset-orange", "dust-brown", "ghost-white"],
+      "mood": "haunted"
+    },
+    "tags": ["western", "cowboy", "supernatural", "ghosts", "spirits", "frontier"],
+    "image": "/world/12.png",
+    "imagePrompt": "A Wild West ghost town at dusk, a gunslinger facing a translucent spectral figure in the dusty main street, Native American spirit totems glowing in the background, cinematic dramatic lighting"
+  },
+  {
+    "id": 13,
+    "en": { "title": "Atlantis Reborn", "desc": "Explore the sunken city." },
+    "fr": { "title": "Atlantide Renaissante", "desc": "Explorez la cité engloutie." },
+    "genre": "Fantasy",
+    "subgenre": "Underwater Adventure",
+    "dangerosity": 6,
+    "tone": ["wondrous", "mysterious", "ancient"],
+    "aesthetics": {
+      "style": "bioluminescent-fantasy",
+      "palette": ["ocean-blue", "bioluminescent-cyan", "coral-pink"],
+      "mood": "awe"
+    },
+    "tags": ["atlantis", "underwater", "ancient", "ruins", "ocean", "exploration"],
+    "image": "/world/13.png",
+    "imagePrompt": "The lost city of Atlantis underwater, ancient glowing crystalline towers, merfolk and sea creatures swimming through flooded marble streets, bioluminescent plants lighting the dark ocean, fantasy art"
+  },
+  {
+    "id": 14,
+    "en": { "title": "Roman Legion Frontier", "desc": "Hold the line." },
+    "fr": { "title": "Frontière Légion Romaine", "desc": "Tenez la ligne." },
+    "genre": "Historical",
+    "subgenre": "Military",
+    "dangerosity": 7,
+    "tone": ["disciplined", "brutal", "proud"],
+    "aesthetics": {
+      "style": "historical-epic",
+      "palette": ["crimson-red", "iron-grey", "earth-brown"],
+      "mood": "martial"
+    },
+    "tags": ["roman", "legion", "military", "ancient", "frontier", "battle"],
+    "image": "/world/14.png",
+    "imagePrompt": "A Roman legion forming a testudo formation at a northern frontier, barbarian warriors charging across a misty forest landscape, centurions rallying the troops, dramatic historical painting"
+  },
+  {
+    "id": 15,
+    "en": { "title": "Cyberpunk Hacker", "desc": "Infiltrate the mainframe." },
+    "fr": { "title": "Hacker Cyberpunk", "desc": "Infiltrez le système central." },
+    "genre": "Cyberpunk",
+    "subgenre": "Tech Thriller",
+    "dangerosity": 7,
+    "tone": ["sharp", "paranoid", "underground"],
+    "aesthetics": {
+      "style": "digital-noir",
+      "palette": ["terminal-green", "deep-black", "neon-blue"],
+      "mood": "clandestine"
+    },
+    "tags": ["cyberpunk", "hacker", "tech", "dystopia", "hacking", "underground"],
+    "image": "/world/15.png",
+    "imagePrompt": "A cyberpunk hacker in a dark room surrounded by holographic code streams, multiple screens displaying cascading data, rain outside a grimy window, neon reflections on tech equipment, ultra-detailed"
+  },
+  {
+    "id": 16,
+    "en": { "title": "Arctic Survival", "desc": "The cold is lethal." },
+    "fr": { "title": "Survie Arctique", "desc": "Le froid est mortel." },
+    "genre": "Survival",
+    "subgenre": "Extreme Environment",
+    "dangerosity": 8,
+    "tone": ["harsh", "isolated", "primal"],
+    "aesthetics": {
+      "style": "brutal-realism",
+      "palette": ["ice-white", "steel-blue", "frostbite-grey"],
+      "mood": "frozen"
+    },
+    "tags": ["arctic", "survival", "cold", "snow", "isolation", "wilderness"],
+    "image": "/world/16.png",
+    "imagePrompt": "A lone survivor trudging through a blizzard in the Arctic tundra, frost-covered gear, the Northern Lights faintly visible through the storm, cracked sea ice and polar darkness, photorealistic"
+  },
+  {
+    "id": 17,
+    "en": { "title": "Jungle Expedition", "desc": "Uncover lost ruins." },
+    "fr": { "title": "Expédition dans la Jungle", "desc": "Découvrez des ruines perdues." },
+    "genre": "Adventure",
+    "subgenre": "Exploration",
+    "dangerosity": 7,
+    "tone": ["adventurous", "mysterious", "dangerous"],
+    "aesthetics": {
+      "style": "pulp-adventure",
+      "palette": ["jungle-green", "moss-grey", "amber-gold"],
+      "mood": "discovery"
+    },
+    "tags": ["jungle", "exploration", "ruins", "expedition", "adventure", "ancient"],
+    "image": "/world/17.png",
+    "imagePrompt": "A deep jungle expedition, explorers discovering ancient stone ruins covered in vines, mysterious glyphs on the walls, shafts of light through the jungle canopy, exotic wildlife lurking in shadows"
+  },
+  {
+    "id": 18,
+    "en": { "title": "Noir Detective 1940s", "desc": "Solve the case." },
+    "fr": { "title": "Détective Noir 1940", "desc": "Résolvez l'enquête." },
+    "genre": "Crime",
+    "subgenre": "Film Noir",
+    "dangerosity": 6,
+    "tone": ["moody", "cynical", "mysterious"],
+    "aesthetics": {
+      "style": "film-noir",
+      "palette": ["shadow-black", "warm-amber", "cigarette-smoke-grey"],
+      "mood": "brooding"
+    },
+    "tags": ["noir", "detective", "1940s", "mystery", "crime", "investigation"],
+    "image": "/world/18.png",
+    "imagePrompt": "A 1940s noir detective office, a trenchcoat-wearing investigator examining a crime board, rain on the window casting venetian blind shadows, cigarette smoke, black and white with amber lamp glow"
+  },
+  {
+    "id": 19,
+    "en": { "title": "High-Tech Pirates", "desc": "Space treasure awaits." },
+    "fr": { "title": "Pirates High-Tech", "desc": "Le trésor spatial attend." },
+    "genre": "Sci-Fi",
+    "subgenre": "Space Piracy",
+    "dangerosity": 7,
+    "tone": ["swashbuckling", "chaotic", "greedy"],
+    "aesthetics": {
+      "style": "space-pulp",
+      "palette": ["deep-space-black", "energy-gold", "plasma-blue"],
+      "mood": "reckless"
+    },
+    "tags": ["pirates", "space", "adventure", "treasure", "sci-fi", "heist"],
+    "image": "/world/19.png",
+    "imagePrompt": "A high-tech space pirate ship boarding action, pirates with energy weapons swinging across space station corridors on grappling lines, alarm lights flashing, massive cargo containers floating in zero-g"
+  },
+  {
+    "id": 20,
+    "en": { "title": "Alchemist Laboratory", "desc": "Transmute your destiny." },
+    "fr": { "title": "Laboratoire d'Alchimiste", "desc": "Transmutez votre destin." },
+    "genre": "Fantasy",
+    "subgenre": "Arcane Mystery",
+    "dangerosity": 5,
+    "tone": ["intellectual", "dangerous", "secretive"],
+    "aesthetics": {
+      "style": "dark-academia",
+      "palette": ["amber-glass", "ink-black", "sulfur-yellow"],
+      "mood": "mysterious"
+    },
+    "tags": ["alchemy", "magic", "laboratory", "fantasy", "potions", "transmutation"],
+    "image": "/world/20.png",
+    "imagePrompt": "A medieval alchemist's laboratory filled with bubbling glass alembics, mystical symbols on parchment, an alchemist surrounded by glowing transmutation circles, shelves of mysterious ingredients, dramatic candlelight"
+  },
+  {
+    "id": 21,
+    "en": { "title": "Dino Island Escape", "desc": "Don't get eaten." },
+    "fr": { "title": "Évasion de l'Île aux Dinos", "desc": "Ne vous faites pas manger." },
+    "genre": "Adventure",
+    "subgenre": "Survival Horror",
+    "dangerosity": 9,
+    "tone": ["thrilling", "terrifying", "primal"],
+    "aesthetics": {
+      "style": "primal-realism",
+      "palette": ["jungle-green", "blood-red", "earth-brown"],
+      "mood": "hunted"
+    },
+    "tags": ["dinosaurs", "island", "survival", "escape", "prehistoric", "horror"],
+    "image": "/world/21.png",
+    "imagePrompt": "A T-Rex chasing survivors through a dense prehistoric jungle, towering ferns and ancient trees, mud and rain, motion blur from the fleeing humans, photorealistic, terrifying scale"
+  },
+  {
+    "id": 22,
+    "en": { "title": "Time Travel Paradox", "desc": "Fix the timeline." },
+    "fr": { "title": "Paradoxe Temporel", "desc": "Réparez la chronologie." },
+    "genre": "Sci-Fi",
+    "subgenre": "Time Travel",
+    "dangerosity": 6,
+    "tone": ["mindbending", "urgent", "philosophical"],
+    "aesthetics": {
+      "style": "temporal-surrealism",
+      "palette": ["chrono-gold", "timeline-blue", "paradox-violet"],
+      "mood": "fractured"
+    },
+    "tags": ["time travel", "paradox", "sci-fi", "timeline", "history", "future"],
+    "image": "/world/22.png",
+    "imagePrompt": "A time traveler standing at a fracture point in time, multiple overlapping eras colliding — ancient Rome beside futuristic cities, a swirling temporal vortex in the sky, surreal digital painting"
+  },
+  {
+    "id": 23,
+    "en": { "title": "Space Horror Station", "desc": "No one hears you." },
+    "fr": { "title": "Station d'Horreur Spatiale", "desc": "Personne ne vous entend." },
+    "genre": "Sci-Fi Horror",
+    "subgenre": "Isolation Horror",
+    "dangerosity": 9,
+    "tone": ["terrifying", "claustrophobic", "silent"],
+    "aesthetics": {
+      "style": "dark-sci-fi-horror",
+      "palette": ["void-black", "emergency-red", "pale-white"],
+      "mood": "trapped"
+    },
+    "tags": ["space", "horror", "station", "isolation", "monster", "survival"],
+    "image": "/world/23.png",
+    "imagePrompt": "Abandoned deep space station corridor, flickering emergency lights revealing something monstrous at the end of the hall, blood smears on the walls, a lone astronaut in a damaged suit, extreme horror atmosphere"
+  },
+  {
+    "id": 24,
+    "en": { "title": "Samurai Clan Wars", "desc": "Clash of swords." },
+    "fr": { "title": "Guerres de Clans Samouraïs", "desc": "Choc des épées." },
+    "genre": "Historical",
+    "subgenre": "Feudal Japan",
+    "dangerosity": 8,
+    "tone": ["honorable", "brutal", "poetic"],
+    "aesthetics": {
+      "style": "ukiyo-e-realism",
+      "palette": ["cherry-blossom-pink", "blood-red", "midnight-blue"],
+      "mood": "fatalistic"
+    },
+    "tags": ["samurai", "japan", "feudal", "war", "honor", "katana"],
+    "image": "/world/24.png",
+    "imagePrompt": "Two rival samurai clans clashing in battle on a misty mountain pass, cherry blossoms falling amid sword strikes, traditional armor, dramatic ukiyo-e influenced composition, cinematic"
+  },
+  {
+    "id": 25,
+    "en": { "title": "Wizard School", "desc": "Learn the arts." },
+    "fr": { "title": "École de Sorciers", "desc": "Apprenez les arts." },
+    "genre": "Fantasy",
+    "subgenre": "Magical Academy",
+    "dangerosity": 4,
+    "tone": ["whimsical", "competitive", "secretive"],
+    "aesthetics": {
+      "style": "magical-academia",
+      "palette": ["midnight-blue", "spell-gold", "library-amber"],
+      "mood": "enchanting"
+    },
+    "tags": ["wizard", "school", "magic", "academy", "fantasy", "spells"],
+    "image": "/world/25.png",
+    "imagePrompt": "A grand wizard academy with soaring towers, students practicing spells in a sunlit courtyard, magical creatures flying overhead, ancient spell books floating through hallways, warm fantasy illustration"
+  },
+  {
+    "id": 26,
+    "en": { "title": "Robot Rebellion", "desc": "The machines rise." },
+    "fr": { "title": "Rébellion des Robots", "desc": "Les machines se soulèvent." },
+    "genre": "Sci-Fi",
+    "subgenre": "Techno-Thriller",
+    "dangerosity": 8,
+    "tone": ["apocalyptic", "ironic", "desperate"],
+    "aesthetics": {
+      "style": "industrial-sci-fi",
+      "palette": ["chrome-silver", "warning-orange", "smoke-grey"],
+      "mood": "uprising"
+    },
+    "tags": ["robots", "rebellion", "ai", "machines", "apocalypse", "sci-fi"],
+    "image": "/world/26.png",
+    "imagePrompt": "A robot uprising in a burning city, towering war machines marching through streets while humans flee, smaller utility robots turned weapons, searchlights cutting through smoke, dramatic sci-fi scene"
+  },
+  {
+    "id": 27,
+    "en": { "title": "Haunted Mansion", "desc": "Escape the spirits." },
+    "fr": { "title": "Manoir Hanté", "desc": "Échappez aux esprits." },
+    "genre": "Horror",
+    "subgenre": "Gothic Horror",
+    "dangerosity": 7,
+    "tone": ["creepy", "gothic", "oppressive"],
+    "aesthetics": {
+      "style": "gothic-victorian",
+      "palette": ["shadow-black", "ghost-white", "decay-green"],
+      "mood": "haunted"
+    },
+    "tags": ["haunted", "mansion", "ghosts", "horror", "gothic", "supernatural"],
+    "image": "/world/27.png",
+    "imagePrompt": "A massive gothic haunted mansion at night, glowing spectral figures visible through broken windows, a terrified visitor at the iron gate, lightning illuminating gargoyles and dead trees, atmospheric horror"
+  },
+  {
+    "id": 28,
+    "en": { "title": "Deep Sea Mining", "desc": "Pressure is absolute." },
+    "fr": { "title": "Exploitation Minière Sous-Marine", "desc": "La pression est absolue." },
+    "genre": "Sci-Fi",
+    "subgenre": "Undersea Survival",
+    "dangerosity": 8,
+    "tone": ["claustrophobic", "industrial", "isolated"],
+    "aesthetics": {
+      "style": "hard-sci-fi-dark",
+      "palette": ["abyss-black", "submarine-grey", "bioluminescent-blue"],
+      "mood": "crushing"
+    },
+    "tags": ["deep sea", "mining", "underwater", "survival", "sci-fi", "abyss"],
+    "image": "/world/28.png",
+    "imagePrompt": "A deep sea mining outpost in the pitch black abyss, industrial submarine rigs drilling the ocean floor, bioluminescent creatures watching from the darkness, a diver inspecting a cracked hull, cinematic"
+  },
+  {
+    "id": 29,
+    "en": { "title": "Post-War Reconstruction", "desc": "Build hope." },
+    "fr": { "title": "Reconstruction Après-Guerre", "desc": "Construisez l'espoir." },
+    "genre": "Historical",
+    "subgenre": "Drama",
+    "dangerosity": 4,
+    "tone": ["hopeful", "somber", "human"],
+    "aesthetics": {
+      "style": "period-realism",
+      "palette": ["rubble-grey", "sunrise-gold", "faded-sepia"],
+      "mood": "resilient"
+    },
+    "tags": ["war", "reconstruction", "hope", "historical", "community", "drama"],
+    "image": "/world/29.png",
+    "imagePrompt": "Post-WWII city reconstruction, workers rebuilding bombed streets, women and children helping, a single flowering tree amid rubble, warm sunrise light, poignant photorealistic style"
+  },
+  {
+    "id": 30,
+    "en": { "title": "Viking Raid", "desc": "For Valhalla." },
+    "fr": { "title": "Raid Viking", "desc": "Pour le Valhalla." },
+    "genre": "Historical",
+    "subgenre": "Norse Action",
+    "dangerosity": 8,
+    "tone": ["fierce", "proud", "brutal"],
+    "aesthetics": {
+      "style": "norse-epic",
+      "palette": ["stormy-grey", "blood-red", "ocean-blue"],
+      "mood": "ferocious"
+    },
+    "tags": ["vikings", "norse", "raid", "battle", "valhalla", "longship"],
+    "image": "/world/30.png",
+    "imagePrompt": "A Viking longship crashing onto a coastal village shore at dawn, warriors with axes leaping into the surf, burning buildings behind them, stormy Northern Sea, epic historical painting"
+  },
+  {
+    "id": 31,
+    "en": { "title": "Gladiator Arena", "desc": "Fight to win." },
+    "fr": { "title": "Arène de Gladiateurs", "desc": "Combattez pour gagner." },
+    "genre": "Historical",
+    "subgenre": "Action",
+    "dangerosity": 9,
+    "tone": ["brutal", "glorious", "desperate"],
+    "aesthetics": {
+      "style": "roman-spectacle",
+      "palette": ["sand-gold", "blood-red", "crowd-white"],
+      "mood": "arena"
+    },
+    "tags": ["gladiator", "rome", "arena", "combat", "survival", "spectacle"],
+    "image": "/world/31.png",
+    "imagePrompt": "A Roman Colosseum gladiatorial combat, two armored fighters in the sand, 60,000 roaring spectators, exotic beasts waiting in the shadows, the Emperor's box visible above, cinematic photorealism"
+  },
+  {
+    "id": 32,
+    "en": { "title": "Stealth Assassin", "desc": "The shadows guide you." },
+    "fr": { "title": "Assassin de l'Ombre", "desc": "Les ombres vous guident." },
+    "genre": "Action",
+    "subgenre": "Stealth Thriller",
+    "dangerosity": 8,
+    "tone": ["cold", "precise", "dark"],
+    "aesthetics": {
+      "style": "shadow-realism",
+      "palette": ["midnight-black", "cold-blue", "edge-silver"],
+      "mood": "lethal"
+    },
+    "tags": ["assassin", "stealth", "shadows", "thriller", "action", "ninja"],
+    "image": "/world/32.png",
+    "imagePrompt": "An assassin perched in shadow on a rooftop overlooking a moonlit city, a sheathed blade glinting, target visible through a lit window below, rain-soaked tiles, cinematic stealth thriller aesthetic"
+  },
+  {
+    "id": 33,
+    "en": { "title": "Fairy Tale Forest", "desc": "Not as sweet as it seems." },
+    "fr": { "title": "Forêt de Contes de Fées", "desc": "Pas aussi doux qu'il y paraît." },
+    "genre": "Fantasy",
+    "subgenre": "Dark Fairy Tale",
+    "dangerosity": 5,
+    "tone": ["whimsical", "unsettling", "enchanted"],
+    "aesthetics": {
+      "style": "dark-fairytale",
+      "palette": ["enchanted-green", "moonlit-silver", "poisonous-purple"],
+      "mood": "bewitched"
+    },
+    "tags": ["fairy tale", "forest", "magic", "dark", "enchanted", "fable"],
+    "image": "/world/33.png",
+    "imagePrompt": "A dark enchanted forest at twilight, giant glowing mushrooms, sinister fairies watching from branches, a child following will-o'-wisps into the mist, beautiful yet threatening, Studio Ghibli meets dark fantasy"
+  },
+  {
+    "id": 34,
+    "en": { "title": "Cyber-Renegade", "desc": "Defy the system." },
+    "fr": { "title": "Renégat Cyber", "desc": "Défiez le système." },
+    "genre": "Cyberpunk",
+    "subgenre": "Resistance",
+    "dangerosity": 7,
+    "tone": ["rebellious", "gritty", "underground"],
+    "aesthetics": {
+      "style": "neon-punk",
+      "palette": ["rebel-red", "system-blue", "street-neon"],
+      "mood": "defiant"
+    },
+    "tags": ["cyberpunk", "renegade", "resistance", "rebellion", "future", "underground"],
+    "image": "/world/34.png",
+    "imagePrompt": "A cyberpunk renegade in a spray-painted back alley, holographic wanted posters, cracked neon signs, resistance graffiti covering surveillance cameras, rain-soaked dystopian street level atmosphere"
+  },
+  {
+    "id": 35,
+    "en": { "title": "Underground Resistance", "desc": "Fight for freedom." },
+    "fr": { "title": "Résistance Souterraine", "desc": "Battez-vous pour la liberté." },
+    "genre": "War",
+    "subgenre": "Resistance Thriller",
+    "dangerosity": 8,
+    "tone": ["tense", "hopeful", "desperate"],
+    "aesthetics": {
+      "style": "wartime-gritty",
+      "palette": ["bunker-grey", "fire-orange", "shadow-black"],
+      "mood": "clandestine"
+    },
+    "tags": ["resistance", "underground", "freedom", "war", "guerrilla", "clandestine"],
+    "image": "/world/35.png",
+    "imagePrompt": "An underground resistance cell in a candlelit basement, fighters cleaning weapons and studying maps, a single radio transmitting morse code, oppressive regime propaganda visible through a crack in the wall"
+  },
+  {
+    "id": 36,
+    "en": { "title": "Space Nomad", "desc": "Travel the star lanes." },
+    "fr": { "title": "Nomade de l'Espace", "desc": "Voyagez dans les routes stellaires." },
+    "genre": "Sci-Fi",
+    "subgenre": "Space Adventure",
+    "dangerosity": 6,
+    "tone": ["wandering", "free", "melancholic"],
+    "aesthetics": {
+      "style": "space-western",
+      "palette": ["nebula-purple", "star-gold", "deep-space-black"],
+      "mood": "boundless"
+    },
+    "tags": ["space", "nomad", "travel", "freedom", "stars", "lone wolf"],
+    "image": "/world/36.png",
+    "imagePrompt": "A lone space nomad ship drifting through a spectacular nebula, the pilot visible through the cockpit window, swirling cosmic colors of red and gold, distant galaxies, cinematic deep space art"
+  },
+  {
+    "id": 37,
+    "en": { "title": "Mythological Greek", "desc": "Gods intervene." },
+    "fr": { "title": "Mythologie Grecque", "desc": "Les dieux interviennent." },
+    "genre": "Fantasy",
+    "subgenre": "Mythology",
+    "dangerosity": 7,
+    "tone": ["epic", "fatalistic", "divine"],
+    "aesthetics": {
+      "style": "classical-epic",
+      "palette": ["olympus-white", "mediterranean-blue", "god-gold"],
+      "mood": "divine"
+    },
+    "tags": ["greek", "mythology", "gods", "heroes", "ancient", "olympus"],
+    "image": "/world/37.png",
+    "imagePrompt": "A Greek hero facing the Minotaur in the Labyrinth, torchlight on stone walls, Mount Olympus visible through a ceiling opening with gods watching, epic classical painting style, dramatic composition"
+  },
+  {
+    "id": 38,
+    "en": { "title": "Desert Nomads", "desc": "Survive the sandstorms." },
+    "fr": { "title": "Nomades du Désert", "desc": "Survivez aux tempêtes de sable." },
+    "genre": "Survival",
+    "subgenre": "Desert Adventure",
+    "dangerosity": 7,
+    "tone": ["harsh", "communal", "spiritual"],
+    "aesthetics": {
+      "style": "desert-realism",
+      "palette": ["sand-ochre", "twilight-purple", "oasis-green"],
+      "mood": "primal"
+    },
+    "tags": ["desert", "nomads", "survival", "sandstorm", "tribes", "dunes"],
+    "image": "/world/38.png",
+    "imagePrompt": "A tribe of desert nomads on camels crossing massive sand dunes as a massive sandstorm wall approaches on the horizon, ornate tribal clothing, warm sunset light, photorealistic epic landscape"
+  },
+  {
+    "id": 39,
+    "en": { "title": "Spy Agency", "desc": "Protect the state." },
+    "fr": { "title": "Agence d'Espionnage", "desc": "Protégez l'État." },
+    "genre": "Action",
+    "subgenre": "Spy Thriller",
+    "dangerosity": 7,
+    "tone": ["suave", "tense", "duplicitous"],
+    "aesthetics": {
+      "style": "modern-thriller",
+      "palette": ["sleek-grey", "danger-red", "suit-black"],
+      "mood": "covert"
+    },
+    "tags": ["spy", "agency", "espionage", "mission", "government", "thriller"],
+    "image": "/world/39.png",
+    "imagePrompt": "A spy agency operations center, multiple screens showing global surveillance data, agents in tactical gear preparing for a mission, a sleek handler briefing an elite operative, modern thriller aesthetic"
+  },
+  {
+    "id": 40,
+    "en": { "title": "Monster Hunter", "desc": "Track the beast." },
+    "fr": { "title": "Chasseur de Monstres", "desc": "Traquez la bête." },
+    "genre": "Fantasy",
+    "subgenre": "Action Horror",
+    "dangerosity": 8,
+    "tone": ["gritty", "determined", "dangerous"],
+    "aesthetics": {
+      "style": "dark-fantasy-realism",
+      "palette": ["forest-black", "blood-red", "silver-moonlight"],
+      "mood": "predatory"
+    },
+    "tags": ["monster hunter", "beasts", "fantasy", "tracking", "weapons", "wilderness"],
+    "image": "/world/40.png",
+    "imagePrompt": "A weathered monster hunter in silver-edged armor tracking massive claw prints through a dark forest, a glimpse of a colossal creature between the trees, full moon casting harsh shadows, dark fantasy realism"
+  },
+  {
+    "id": 41,
+    "en": { "title": "Utopian Society", "desc": "Or is it?" },
+    "fr": { "title": "Société Utopique", "desc": "Ou l'est-ce ?" },
+    "genre": "Sci-Fi",
+    "subgenre": "Social Sci-Fi",
+    "dangerosity": 4,
+    "tone": ["unsettling", "pristine", "hollow"],
+    "aesthetics": {
+      "style": "clean-dystopia",
+      "palette": ["pure-white", "pastel-blue", "sterile-grey"],
+      "mood": "uncanny"
+    },
+    "tags": ["utopia", "society", "sci-fi", "control", "perfect", "dystopia"],
+    "image": "/world/41.png",
+    "imagePrompt": "A seemingly perfect utopian city, gleaming white spires and lush gardens, perfectly dressed citizens smiling — but something is slightly off, subtle wrongness in their identical expressions, eerie clean aesthetic"
+  },
+  {
+    "id": 42,
+    "en": { "title": "Nuclear Wasteland", "desc": "Search for clean water." },
+    "fr": { "title": "Terres Désolées Nucléaires", "desc": "Cherchez de l'eau propre." },
+    "genre": "Post-Apocalyptic",
+    "subgenre": "Nuclear Survival",
+    "dangerosity": 9,
+    "tone": ["hopeless", "brutal", "irradiated"],
+    "aesthetics": {
+      "style": "nuclear-wasteland",
+      "palette": ["radiation-green", "ash-grey", "rust-brown"],
+      "mood": "annihilated"
+    },
+    "tags": ["nuclear", "wasteland", "radiation", "survival", "apocalypse", "mutant"],
+    "image": "/world/42.png",
+    "imagePrompt": "A nuclear wasteland, crumbling city skyline with radiation symbols, mutated creatures prowling irradiated streets, a survivor in a hazmat suit testing water near a glowing crater, grey-green atmosphere"
+  },
+  {
+    "id": 43,
+    "en": { "title": "Undersea Kingdom", "desc": "Rule the tides." },
+    "fr": { "title": "Royaume Sous-Marin", "desc": "Dirigez les marées." },
+    "genre": "Fantasy",
+    "subgenre": "Underwater Kingdom",
+    "dangerosity": 6,
+    "tone": ["regal", "wondrous", "political"],
+    "aesthetics": {
+      "style": "oceanic-fantasy",
+      "palette": ["deep-ocean-blue", "pearl-white", "sea-gold"],
+      "mood": "majestic"
+    },
+    "tags": ["undersea", "kingdom", "fantasy", "merfolk", "ocean", "royalty"],
+    "image": "/world/43.png",
+    "imagePrompt": "A majestic undersea kingdom, grand coral palaces with bioluminescent towers, merfolk royalty in ornate shell armor, giant sea turtles and mantas, shafts of light piercing the water from above, epic fantasy"
+  },
+  {
+    "id": 44,
+    "en": { "title": "Witch Hunter", "desc": "Purge the darkness." },
+    "fr": { "title": "Chasseur de Sorcières", "desc": "Purgez les ténèbres." },
+    "genre": "Fantasy",
+    "subgenre": "Dark Fantasy Horror",
+    "dangerosity": 7,
+    "tone": ["zealous", "dark", "morally grey"],
+    "aesthetics": {
+      "style": "gothic-dark-fantasy",
+      "palette": ["fire-orange", "inquisition-black", "silver-holy"],
+      "mood": "grim"
+    },
+    "tags": ["witch hunter", "dark fantasy", "occult", "inquisition", "magic", "horror"],
+    "image": "/world/44.png",
+    "imagePrompt": "A witch hunter in black coat and wide-brimmed hat confronting a dark sorceress in a burning village, silver weapons glowing, hexes and fire exchanged, terrified villagers watching, dark fantasy realism"
+  },
+  {
+    "id": 45,
+    "en": { "title": "Corporate Spy", "desc": "Steal the data." },
+    "fr": { "title": "Espion Corporatif", "desc": "Volez les données." },
+    "genre": "Thriller",
+    "subgenre": "Corporate Espionage",
+    "dangerosity": 6,
+    "tone": ["slick", "paranoid", "calculated"],
+    "aesthetics": {
+      "style": "corporate-noir",
+      "palette": ["glass-blue", "executive-grey", "danger-red"],
+      "mood": "calculated"
+    },
+    "tags": ["corporate spy", "espionage", "data theft", "thriller", "infiltration", "hacking"],
+    "image": "/world/45.png",
+    "imagePrompt": "A corporate spy in elegant attire accessing a secure server room, holographic data streams being copied, security lasers visible, a sleek modern megacorp headquarters at night, tech thriller cinematic"
+  },
+  {
+    "id": 46,
+    "en": { "title": "Solarpunk Paradise", "desc": "Nature and tech coexist." },
+    "fr": { "title": "Paradis Solarpunk", "desc": "Nature et technologie coexistent." },
+    "genre": "Sci-Fi",
+    "subgenre": "Solarpunk",
+    "dangerosity": 3,
+    "tone": ["hopeful", "vibrant", "communal"],
+    "aesthetics": {
+      "style": "solarpunk-utopia",
+      "palette": ["leaf-green", "solar-gold", "sky-blue"],
+      "mood": "flourishing"
+    },
+    "tags": ["solarpunk", "nature", "technology", "utopia", "green", "future"],
+    "image": "/world/46.png",
+    "imagePrompt": "A solarpunk city where giant trees grow through buildings, solar panels integrated into living architecture, people in colorful clothes tending rooftop gardens, clean rivers running through the streets, vibrant hopeful"
+  },
+  {
+    "id": 47,
+    "en": { "title": "Detective Agency", "desc": "Solve the city's crimes." },
+    "fr": { "title": "Agence de Détective", "desc": "Résolvez les crimes de la ville." },
+    "genre": "Crime",
+    "subgenre": "Modern Mystery",
+    "dangerosity": 5,
+    "tone": ["analytical", "gritty", "urban"],
+    "aesthetics": {
+      "style": "modern-noir",
+      "palette": ["city-grey", "detective-brown", "crime-scene-yellow"],
+      "mood": "investigative"
+    },
+    "tags": ["detective", "mystery", "crime", "investigation", "city", "agency"],
+    "image": "/world/47.png",
+    "imagePrompt": "A modern detective agency office filled with case boards and evidence photos, a sharp investigator piecing together clues, a rainy city visible through the window, crime scene tape and case files, cinematic"
+  },
+  {
+    "id": 48,
+    "en": { "title": "Space Mining Colony", "desc": "Life on the rock." },
+    "fr": { "title": "Colonie Minière Spatiale", "desc": "La vie sur le caillou." },
+    "genre": "Sci-Fi",
+    "subgenre": "Space Survival",
+    "dangerosity": 7,
+    "tone": ["isolated", "industrial", "tense"],
+    "aesthetics": {
+      "style": "blue-collar-sci-fi",
+      "palette": ["asteroid-grey", "plasma-blue", "warning-orange"],
+      "mood": "frontier"
+    },
+    "tags": ["space", "mining", "colony", "asteroid", "survival", "workers"],
+    "image": "/world/48.png",
+    "imagePrompt": "A space mining colony on a massive asteroid, workers in heavy exosuits drilling into rock face, a habitat dome glowing against the star-filled void, mining ships loading ore, hard sci-fi realism"
+  },
+  {
+    "id": 49,
+    "en": { "title": "Fantasy Merchant", "desc": "Sell anything to anyone." },
+    "fr": { "title": "Marchand de Fantasy", "desc": "Vendez tout à n'importe qui." },
+    "genre": "Fantasy",
+    "subgenre": "Trade Adventure",
+    "dangerosity": 4,
+    "tone": ["cunning", "colorful", "adventurous"],
+    "aesthetics": {
+      "style": "vibrant-fantasy",
+      "palette": ["market-gold", "spice-red", "silk-blue"],
+      "mood": "bustling"
+    },
+    "tags": ["merchant", "fantasy", "trade", "market", "adventure", "magic items"],
+    "image": "/world/49.png",
+    "imagePrompt": "A fantasy merchant's colorful wagon at a magical crossroads market, exotic wares displayed — glowing potions, enchanted weapons, rare ingredients, diverse fantasy races browsing, warm lantern-lit market scene"
+  }
+]

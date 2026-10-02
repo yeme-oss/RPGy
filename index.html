@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPGy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css?v=20260803-live-presence">
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background: #000; }
+        #full-screen-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1;
+        }
+        .overlay-box { background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
+        .lang-active { background-color: #065f46 !important; } /* green-800 */
+    </style>
+</head>
+<body class="text-white h-screen">
+
+    <aside class="desktop-required" role="dialog" aria-labelledby="desktop-required-title" aria-describedby="desktop-required-copy">
+        <div class="desktop-required-glow" aria-hidden="true"></div>
+        <div class="desktop-required-card">
+            <div class="desktop-required-brand"><span>R</span><strong>RPGy</strong></div>
+            <div class="desktop-required-icon" aria-hidden="true">
+                <span class="desktop-required-screen"></span>
+                <span class="desktop-required-stand"></span>
+            </div>
+            <p class="desktop-required-kicker">A larger world awaits</p>
+            <h1 id="desktop-required-title">This app can only<br>run on desktop.</h1>
+            <p id="desktop-required-copy">RPGy needs a full screen for your world, Party, conversations, and Director. Open <strong>rpgy.app</strong> on a desktop or laptop to play.</p>
+            <div class="desktop-required-rule"><span></span><small>49 worlds waiting</small><span></span></div>
+        </div>
+    </aside>
+
+    <!-- Background Image -->
+    <img id="full-screen-img" src="" class="hidden">
+
+    <!-- Top Left: Stats (down 40px) -->
+    <div id="stats" class="absolute top-[88px] left-4 p-4 overlay-box rounded-lg">
+        <span class="text-green-400 block"><span id="hp-label">HP</span>: <span id="hp">0</span></span>
+        <span class="text-yellow-400 block">Karma: <span id="karma">0</span></span>
+    </div>
+
+    <!-- Top Bar -->
+    <header class="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+        <div class="flex items-center gap-4">
+            <button id="btn-home" type="button" class="text-2xl font-bold text-blue-500 tracking-wider glow cursor-pointer" aria-label="Open RPGy front page" title="RPGy home">RPGy</button>
+            <button id="btn-new-world" class="px-3 py-1 bg-blue-900 text-blue-200 hover:bg-blue-800 text-xs rounded border border-blue-700">NEW WORLD</button>
+        </div>
+        <div class="flex gap-2">
+            <div id="actions-remaining" class="credit-balance select-none">SERIAL KEYS PAUSED</div>
+            <button id="btn-license" class="byok-unlock-badge">UNLOCK WITH YOUR GEMINI API KEY</button>
+            <button id="lang-en" onclick="setLanguage('en')" class="px-2 py-1 bg-gray-800 rounded text-xs">EN</button>
+            <button id="lang-fr" onclick="setLanguage('fr')" class="px-2 py-1 bg-gray-800 rounded text-xs">FR</button>
+            <button id="btn-save" class="px-2 py-1 bg-gray-800 rounded text-xs">SAVE</button>
+            <button id="btn-load" class="px-2 py-1 bg-gray-800 rounded text-xs">LOAD</button>
+            <button id="btn-share" class="px-3 py-1 bg-blue-700 hover:bg-blue-600 text-blue-50 rounded text-xs border border-blue-400 shadow-lg shadow-blue-950/40">COPY SHARE LINK</button>
+        </div>
+    </header>
+
+    <!-- Full custom-world design studio. The Master Prompt can draft every field below. -->
+    <div id="constructor-view" class="world-constructor-view hidden">
+        <div class="constructor-aurora" aria-hidden="true"></div>
+        <form id="world-constructor-form" class="world-constructor-studio" autocomplete="off">
+            <header class="constructor-header">
+                <div>
+                    <span class="constructor-eyebrow">RPGy / World Foundry</span>
+                    <h2>World Constructor</h2>
+                    <p>Describe the experience once, let the Director draft its architecture, then refine every detail before reality is built.</p>
+                </div>
+                <button id="constructor-close" class="constructor-close" type="button" aria-label="Close World Constructor">CLOSE</button>
+            </header>
+
+            <div class="constructor-body">
+                <aside class="constructor-master-panel">
+                    <div class="constructor-section-number">00 / MASTER DIRECTIVE</div>
+                    <label class="constructor-label" for="world-master-prompt">Master Prompt</label>
+                    <p class="constructor-help">Write naturally. This governs the entire world and can fill every editable field.</p>
+                    <textarea id="world-master-prompt" class="constructor-master-input" rows="14" placeholder="Example: A rain-soaked occult detective story in 1920s Marseille. I play a disgraced medium who can hear the last thought of every corpse. My companion is a skeptical police archivist hiding a supernatural debt. Elegant noir, dangerous bargains, intimate stakes, photorealistic visuals..."></textarea>
+                    <button id="btn-draft-world" class="constructor-draft-button" type="button">
+                        <span aria-hidden="true">✦</span>
+                        <span><strong>Draft world from prompt</strong><small>Fills all fields with AI</small></span>
+                    </button>
+                    <div id="constructor-draft-status" class="constructor-draft-status" role="status" aria-live="polite"></div>
+                    <div class="constructor-master-note">
+                        <strong>The Master Prompt stays authoritative.</strong>
+                        <span>Your manual edits add precision; they do not erase the original creative direction.</span>
+                    </div>
+                </aside>
+
+                <main class="constructor-fields">
+                    <section class="constructor-section">
+                        <div class="constructor-section-heading"><span>01</span><div><h3>World identity</h3><p>The promise, place, and texture of the experience.</p></div></div>
+                        <div class="constructor-grid constructor-grid-4">
+                            <label><span>World title</span><input id="world-title" data-world-field="title" type="text" placeholder="The Salt Meridian"></label>
+                            <label><span>Genre</span><input id="world-genre" data-world-field="genre" type="text" placeholder="Occult nautical noir"></label>
+                            <label><span>Tone</span><input id="world-tone" data-world-field="tone" type="text" placeholder="Tense, intimate, darkly funny"></label>
+                            <label><span>Visual language</span><select id="world-visual-style" data-world-field="visualStyle"><option value="photorealistic">Photorealistic</option><option value="cartoon">Cartoon / illustrated</option></select></label>
+                        </div>
+                        <label><span>Setting and era</span><textarea id="world-setting" data-world-field="setting" rows="3" placeholder="Where and when does this world exist? What makes daily life distinctive?"></textarea></label>
+                        <label><span>Core premise</span><textarea id="world-premise" data-world-field="premise" rows="3" placeholder="What makes this world playable, surprising, and unlike an ordinary setting?"></textarea></label>
+                        <label><span>Themes and motifs</span><input id="world-themes" data-world-field="themes" type="text" placeholder="Memory, chosen family, dangerous mercy, flooded cathedrals"></label>
+                        <label><span>World hero-banner art direction</span><textarea id="world-hero-prompt" data-world-field="heroBannerPrompt" rows="3" placeholder="A cinematic 16:9 establishing image for this world archive card: composition, location, weather, lighting, focal action, and visual style. No text or logos."></textarea></label>
+                        <div class="constructor-image-forge constructor-image-forge-banner" data-constructor-image="heroBanner">
+                            <div class="constructor-image-preview"><img id="world-hero-preview" alt="Generated world hero banner"><span>16:9 WORLD HERO</span></div>
+                            <div><strong>World archive hero</strong><p>Generate the banner that will represent this custom world in the world list.</p><button type="button" data-generate-constructor-image="heroBanner">GENERATE HERO BANNER</button><small role="status"></small></div>
+                        </div>
+                    </section>
+
+                    <section class="constructor-section">
+                        <div class="constructor-section-heading"><span>02</span><div><h3>Story engine</h3><p>The pressure that ensures the world begins in motion.</p></div></div>
+                        <label><span>Opening crisis</span><textarea id="world-opening-crisis" data-world-field="openingCrisis" rows="3" placeholder="What is happening right now that cannot be ignored?"></textarea></label>
+                        <div class="constructor-grid constructor-grid-2">
+                            <label><span>Stakes</span><textarea id="world-stakes" data-world-field="stakes" rows="3" placeholder="What is lost if the Player hesitates or fails?"></textarea></label>
+                            <label><span>First meaningful choice</span><textarea id="world-first-choice" data-world-field="firstChoice" rows="3" placeholder="Two compelling options with real tradeoffs—not a cosmetic decision."></textarea></label>
+                        </div>
+                    </section>
+
+                    <section class="constructor-section">
+                        <div class="constructor-section-heading"><span>03</span><div><h3>Player</h3><p>The protagonist belongs to the player; the world gives them history and leverage.</p></div></div>
+                        <div class="constructor-grid constructor-grid-2">
+                            <label><span>Name</span><input id="world-player-name" data-world-field="playerName" type="text" placeholder="Mara Vey"></label>
+                            <label><span>Role / class</span><input id="world-player-role" data-world-field="playerRole" type="text" placeholder="Disgraced tide-medium"></label>
+                        </div>
+                        <label><span>Identity and appearance</span><textarea id="world-player-description" data-world-field="playerDescription" rows="3" placeholder="Full-body appearance, history, temperament, voice, and contradictions."></textarea></label>
+                        <label><span>Wants, fears, and goals</span><textarea id="world-player-drive" data-world-field="playerDrive" rows="3" placeholder="Immediate need, private want, fear, loyalty, secret, and long-term goal."></textarea></label>
+                        <label><span>Full-body reference art direction</span><textarea id="world-player-portrait-prompt" data-world-field="playerPortraitPrompt" rows="3" placeholder="Complete head-to-toe appearance: face, hair, clothing, equipment, pose, lighting, and visual style. No crop."></textarea></label>
+                        <div class="constructor-image-forge" data-constructor-image="playerPortrait">
+                            <div class="constructor-image-preview constructor-image-preview-portrait"><img id="world-player-portrait-preview" alt="Generated Player full-body reference"><span>2:3 PLAYER REFERENCE</span></div>
+                            <div><strong>Player reference image</strong><p>This becomes the canonical full-body visual used when staging the Player in scenes.</p><button type="button" data-generate-constructor-image="playerPortrait">GENERATE FULL BODY</button><small role="status"></small></div>
+                        </div>
+                    </section>
+
+                    <section class="constructor-section">
+                        <div class="constructor-section-heading"><span>04</span><div><h3>Starting Party members</h3><p>Two autonomous companions with separate lives, agendas, and reasons to stay.</p></div></div>
+                        <div class="constructor-companion-label">COMPANION 01</div>
+                        <div class="constructor-grid constructor-grid-2">
+                            <label><span>Name</span><input id="world-party-name" data-world-field="partyName" type="text" placeholder="Inspector Luc Renard"></label>
+                            <label><span>Role / class</span><input id="world-party-role" data-world-field="partyRole" type="text" placeholder="Police archivist"></label>
+                        </div>
+                        <label><span>Identity, personality, and appearance</span><textarea id="world-party-description" data-world-field="partyDescription" rows="3" placeholder="A distinctive full-body design and a personality that can delight, resist, lie, leave, or surprise."></textarea></label>
+                        <label><span>Private agenda and relationship</span><textarea id="world-party-drive" data-world-field="partyDrive" rows="3" placeholder="What do they need and want? What are they hiding? Why do they travel with the Player?"></textarea></label>
+                        <label><span>Full-body reference art direction</span><textarea id="world-party-portrait-prompt" data-world-field="partyPortraitPrompt" rows="3" placeholder="Complete head-to-toe appearance: face, hair, clothing, equipment, pose, lighting, and visual style. No crop."></textarea></label>
+                        <div class="constructor-image-forge" data-constructor-image="partyPortrait">
+                            <div class="constructor-image-preview constructor-image-preview-portrait"><img id="world-party-portrait-preview" alt="Generated first Party member full-body reference"><span>2:3 COMPANION 01</span></div>
+                            <div><strong>First companion reference</strong><p>Locked character identity for portraits and reference-aware scene generation.</p><button type="button" data-generate-constructor-image="partyPortrait">GENERATE FULL BODY</button><small role="status"></small></div>
+                        </div>
+
+                        <div class="constructor-companion-divider"></div>
+                        <div class="constructor-companion-label">COMPANION 02</div>
+                        <div class="constructor-grid constructor-grid-2">
+                            <label><span>Name</span><input id="world-party2-name" data-world-field="party2Name" type="text" placeholder="Sister Imani Vale"></label>
+                            <label><span>Role / class</span><input id="world-party2-role" data-world-field="party2Role" type="text" placeholder="Forbidden cartographer"></label>
+                        </div>
+                        <label><span>Identity, personality, and appearance</span><textarea id="world-party2-description" data-world-field="party2Description" rows="3" placeholder="A visually and psychologically distinct companion who changes the group dynamic."></textarea></label>
+                        <label><span>Private agenda and relationship</span><textarea id="world-party2-drive" data-world-field="party2Drive" rows="3" placeholder="Their need, want, fear, secret, conflicting objective, and relationships to the Player and first companion."></textarea></label>
+                        <label><span>Full-body reference art direction</span><textarea id="world-party2-portrait-prompt" data-world-field="party2PortraitPrompt" rows="3" placeholder="Complete head-to-toe appearance: face, hair, clothing, equipment, pose, lighting, and visual style. No crop."></textarea></label>
+                        <div class="constructor-image-forge" data-constructor-image="party2Portrait">
+                            <div class="constructor-image-preview constructor-image-preview-portrait"><img id="world-party2-portrait-preview" alt="Generated second Party member full-body reference"><span>2:3 COMPANION 02</span></div>
+                            <div><strong>Second companion reference</strong><p>Canonical full-body identity for the second autonomous Party member.</p><button type="button" data-generate-constructor-image="party2Portrait">GENERATE FULL BODY</button><small role="status"></small></div>
+                        </div>
+                    </section>
+
+                    <section class="constructor-section">
+                        <div class="constructor-section-heading"><span>05</span><div><h3>Direction</h3><p>How the Game Master should shape pressure, freedom, and presentation.</p></div></div>
+                        <div class="constructor-grid constructor-grid-2">
+                            <label><span>Game Master style</span><textarea id="world-gm-style" data-world-field="gmStyle" rows="3" placeholder="Cinematic but grounded; consequences over exposition; dry wit under pressure."></textarea></label>
+                            <label><span>Boundaries and exclusions</span><textarea id="world-boundaries" data-world-field="boundaries" rows="3" placeholder="Themes, content, clichés, or mechanics this world should avoid."></textarea></label>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+            <footer class="constructor-footer">
+                <div><span id="constructor-completion">0 / 28 fields shaped</span><small>Your draft and generated images are saved locally on this device.</small></div>
+                <div class="constructor-footer-actions">
+                    <button id="btn-reset-world" type="button">RESET DRAFT</button>
+                    <button id="btn-enter" type="button"><span>CREATE WORLD</span><i aria-hidden="true">→</i></button>
+                </div>
+            </footer>
+            <input type="hidden" id="wizard-input">
+        </form>
+    </div>
+
+    <!-- Clean, self-contained generation scene. Nothing from the previous world remains visible behind it. -->
+    <section id="world-construction" class="world-construction hidden" aria-live="polite" aria-labelledby="construction-heading">
+        <div class="construction-aurora" aria-hidden="true"></div>
+        <div class="construction-grid" aria-hidden="true"></div>
+        <header class="construction-brand"><span>R</span><strong>RPGy</strong><small>World foundry</small></header>
+        <div class="construction-shell">
+            <div class="construction-copy">
+                <p class="construction-kicker"><span></span> Constructing reality</p>
+                <h1 id="construction-heading">A new world is taking shape.</h1>
+                <p id="construction-briefing" class="construction-briefing"></p>
+                <div class="construction-live" role="status">
+                    <i aria-hidden="true"></i>
+                    <span id="construction-status">Reading the laws of this reality...</span>
+                </div>
+                <button id="construction-return" class="construction-return hidden" type="button">Return to world archive</button>
+            </div>
+            <ol id="construction-steps" class="construction-steps">
+                <li class="is-active" data-construction-step="0"><span>01</span><div><strong id="construction-world-label">Defining the world</strong><p id="construction-world-detail">Establishing its atmosphere, rules, factions, and immediate dangers.</p></div></li>
+                <li data-construction-step="1"><span>02</span><div><strong id="construction-cast-label">Giving the Party a pulse</strong><p id="construction-cast-detail">Creating people with memories, private wants, loyalties, fears, and conflicting goals.</p></div></li>
+                <li data-construction-step="2"><span>03</span><div><strong id="construction-story-label">Setting the story in motion</strong><p id="construction-story-detail">Preparing an urgent situation that needs the player instead of waiting silently.</p></div></li>
+                <li data-construction-step="3"><span>04</span><div><strong id="construction-scene-label">Composing the opening scene</strong><p id="construction-scene-detail">Staging the world around the canonical Player and Party references.</p></div></li>
+            </ol>
+        </div>
+        <div class="construction-progress" aria-hidden="true"><span id="construction-progress-bar"></span></div>
+    </section>
+
+    <!-- Bottom Left: Dialogue Window + Action Bar -->
+    <div class="absolute bottom-6 left-6 z-20 w-1/3 flex flex-col gap-2">
+        <div id="narrative" class="h-64 overlay-box p-4 rounded-lg overflow-y-auto flex flex-col-reverse">
+            <p class="text-gray-200">...</p>
+        </div>
+        <div id="discussion-bar" class="overlay-box rounded-lg flex items-center justify-between gap-3 px-4 py-2">
+            <span id="discussion-status" class="text-xs text-blue-200 tracking-wide">Your move</span>
+            <button id="take-turn-btn" type="button" class="hidden px-3 py-1 bg-amber-800 hover:bg-amber-700 border border-amber-500 rounded text-xs font-bold whitespace-nowrap">✋ TAKE MY TURN</button>
+        </div>
+        <div class="h-16 overlay-box rounded-lg flex items-center px-4">
+            <input type="text" id="input" class="w-full bg-transparent border-b border-gray-500 outline-none p-2" placeholder="Action...">
+        </div>
+        <div id="action-bar" class="flex gap-2">
+            <button class="px-3 py-1 overlay-box rounded text-sm" onclick="openModal('quests-modal')">Quests</button>
+            <button class="px-3 py-1 overlay-box rounded text-sm" onclick="openModal('inventory-modal')">Inventory</button>
+            <button class="px-3 py-1 overlay-box rounded text-sm" onclick="openPartyRoster()">Party</button>
+        </div>
+    </div>
+
+    <!-- Always-visible player and party cast -->
+    <section id="survivor-roster" class="survivor-roster hidden" aria-label="Player and party">
+        <div class="survivor-roster-heading">
+            <div>
+                <span class="survivor-roster-kicker">ZOMBIE LONDON</span>
+                <h2 id="survivor-roster-title">THE SURVIVORS</h2>
+            </div>
+            <div class="survivor-roster-controls">
+                <button id="party-verbose-toggle" type="button" class="party-verbose-toggle" aria-pressed="false" title="Choose richer or more concise Party responses">
+                    <span class="party-verbose-label">VERBOSE</span>
+                    <span class="party-verbose-switch" aria-hidden="true"><i></i></span>
+                    <small id="party-verbose-state">OFF</small>
+                </button>
+                <button type="button" class="survivor-roster-all" onclick="openPartyRoster()">AI PROFILES</button>
+            </div>
+        </div>
+        <div id="survivor-roster-list" class="survivor-roster-list"></div>
+    </section>
+
+    <!-- Talk Modal -->
+    <div id="talk-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90" onclick="closeModal(event)">
+        <div class="overlay-box p-8 rounded-lg max-w-2xl w-full" onclick="event.stopPropagation()">
+            <h2 class="text-2xl font-bold mb-4 text-blue-400">Interaction</h2>
+            <div id="talk-content" class="flex flex-col items-center"></div>
+        </div>
+    </div>
+
+    <!-- Focused one-to-one Party chat -->
+    <div id="companion-chat-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90" onclick="closeModal(event)">
+        <div class="companion-chat-window" onclick="event.stopPropagation()">
+            <header class="companion-chat-header">
+                <img id="companion-chat-portrait" class="companion-chat-portrait" src="" alt="">
+                <div class="min-w-0 flex-1">
+                    <p id="companion-chat-kicker" class="companion-chat-kicker">PRIVATE PARTY CHANNEL</p>
+                    <h2 id="companion-chat-name" class="companion-chat-name">Companion</h2>
+                    <p id="companion-chat-role" class="companion-chat-role"></p>
+                </div>
+                <button type="button" class="companion-chat-close" onclick="closeModal()" aria-label="Close">X</button>
+            </header>
+            <div id="companion-chat-content" class="companion-chat-content" aria-live="polite"></div>
+            <div id="companion-chat-status" class="companion-chat-status"></div>
+            <form id="companion-chat-form" class="companion-chat-form">
+                <input id="companion-chat-input" type="text" maxlength="1800" autocomplete="off" placeholder="Say something...">
+                <button id="companion-chat-send" type="submit">SEND</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="quests-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onclick="closeModal(event)">
+        <div class="overlay-box p-8 rounded-lg max-w-lg w-full" onclick="event.stopPropagation()">
+            <h2 class="text-2xl font-bold mb-4">Quests</h2>
+            <div id="quests-content" class="h-64 overflow-y-auto"></div>
+        </div>
+    </div>
+    <div id="inventory-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onclick="closeModal(event)">
+        <div class="overlay-box p-8 rounded-lg max-w-lg w-full" onclick="event.stopPropagation()">
+            <h2 class="text-2xl font-bold mb-4">Inventory</h2>
+            <div id="inventory-content" class="h-64 overflow-y-auto"></div>
+        </div>
+    </div>
+    <div id="party-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onclick="closeModal(event)">
+        <div class="overlay-box p-6 rounded-lg w-full mx-6" style="max-width:1100px;max-height:92vh;" onclick="event.stopPropagation()">
+            <div class="flex items-start justify-between gap-4 mb-4">
+                <div>
+                    <h2 id="party-modal-title" class="text-2xl font-bold">Player &amp; Party</h2>
+                    <p id="party-help" class="text-xs text-gray-400 mt-1">Every unit has an independent identity. Changes save locally and are included in SAVE.</p>
+                </div>
+                <button id="party-view-all-btn" type="button" class="hidden px-3 py-1 bg-blue-950 border border-blue-700 text-blue-200 rounded hover:bg-blue-900" onclick="openPartyRoster()">VIEW ALL</button>
+                <button type="button" class="px-3 py-1 bg-gray-800 rounded hover:bg-gray-700" onclick="closeModal()" aria-label="Close">✕</button>
+            </div>
+            <div id="party-content" class="unit-grid overflow-y-auto pr-2" style="max-height:76vh;"></div>
+        </div>
+    </div>
+
+    <!-- Bring-your-own-key gate: RPGy runs on the player's own Gemini account. -->
+    <div id="license-modal" class="hidden absolute inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-90" onclick="closeModal(event)">
+        <section class="license-window" onclick="event.stopPropagation()" aria-labelledby="license-title">
+            <button type="button" class="license-close" onclick="closeModal()" aria-label="Close">X</button>
+            <p class="license-kicker">FREE &amp; OPEN SOURCE</p>
+            <h2 id="license-title">This requires a Gemini API Key</h2>
+            <p class="license-copy">RPGy is free and runs entirely on your own Gemini account. Your browser talks directly to Google; RPGy never receives your key.</p>
+            <p id="license-status" class="license-status" role="status"></p>
+
+            <section class="byok-wallet byok-wallet-primary" aria-labelledby="byok-title">
+                <p class="license-kicker">UNLOCK RPGY</p>
+                <h3 id="byok-title">Use your own Gemini API key</h3>
+                <p>Enter a valid Gemini API key with billing enabled.</p>
+                <div class="license-input-row">
+                    <input id="byok-gemini-input" type="password" autocomplete="off" spellcheck="false" placeholder="AIza...">
+                    <button id="byok-activate" type="button">UNLOCK WITH GEMINI</button>
+                </div>
+                <label class="license-check"><input id="byok-remember" type="checkbox" checked> Remember Gemini Key locally in this browser</label>
+                <p id="byok-status" class="byok-status" role="status"></p>
+                <button id="byok-clear" class="license-remove" type="button">CLEAR BYOK KEY</button>
+                <p class="license-privacy">Set a small Google Cloud billing limit—such as $10—for security. The key remains local and is never included in saves or share links.</p>
+            </section>
+
+        </section>
+    </div>
+
+    <!-- Immutable share publisher. -->
+    <div id="share-modal" class="hidden absolute inset-0 z-[75] flex items-center justify-center bg-black bg-opacity-90" onclick="closeModal(event)">
+        <section class="share-window" onclick="event.stopPropagation()" aria-labelledby="share-title">
+            <button type="button" class="share-close" onclick="closeModal()" aria-label="Close">X</button>
+            <p id="share-kicker" class="share-kicker">IMMUTABLE ADVENTURE SNAPSHOT</p>
+            <h2 id="share-title">Share this world</h2>
+            <p id="share-copy" class="share-copy">Publish the exact current save and copy a permanent link.</p>
+            <p id="share-gift-status" class="share-gift-status" role="status"></p>
+            <p id="share-final-note" class="share-final-note">The snapshot is final. It cannot be overwritten or cancelled.</p>
+            <input id="share-url-output" class="share-url-output hidden" type="text" readonly aria-label="Created share link">
+            <button id="share-copy-button" class="share-copy-button" type="button">COPY LINK</button>
+        </section>
+    </div>
+
+    <!-- Bottom Right: Sound toggles -->
+    <div class="absolute bottom-6 right-6 flex flex-col gap-2 z-10 hidden">
+        <div class="overlay-box rounded px-3 py-2 flex items-center gap-2 text-xs">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input id="toggle-music" type="checkbox" class="accent-blue-500">
+                <span>Music</span>
+            </label>
+            <button id="btn-download-music" title="Download world music" class="ml-1 text-gray-400 hover:text-white disabled:opacity-30 disabled:hover:text-gray-400" disabled>⬇</button>
+            <span id="music-status" class="text-gray-500 text-[10px]"></span>
+        </div>
+        <label class="overlay-box rounded px-3 py-2 flex items-center gap-2 text-xs cursor-pointer select-none">
+            <input id="toggle-dialogue" type="checkbox" class="accent-blue-500">
+            <span>Dialogue sound</span>
+        </label>
+    </div>
+    <audio id="music-audio" loop></audio>
+    <audio id="dialogue-audio"></audio>
+
+    <!-- Right: Current story and permanently visible quest log -->
+    <section id="current-story-panel" class="hidden absolute right-6 z-10 overlay-box rounded-lg px-4 py-3 pointer-events-none" style="top:7rem;width:340px;border-left:3px solid rgba(59,130,246,0.8);box-shadow:0 12px 35px rgba(0,0,0,0.35);" aria-label="Current story situation">
+        <div class="text-[10px] uppercase tracking-[0.24em] text-blue-300 mb-1">Current Story</div>
+        <h2 id="current-story-title" class="text-sm font-bold text-white mb-1"></h2>
+        <p id="current-story-text" class="text-xs leading-relaxed text-gray-300"></p>
+    </section>
+    <section id="quest-log-panel" class="quest-log-panel absolute right-6 z-10 overlay-box rounded-lg" aria-labelledby="quest-log-title">
+        <div id="quest-log-title" class="quest-log-title">QUEST LOG</div>
+        <div id="sidebar-content" class="quest-log-content overflow-y-auto">
+            <p class="text-right text-xs text-yellow-700 italic">No active quests.</p>
+        </div>
+    </section>
+
+    <!-- Left: Explored Zones & NPCs -->
+    <div id="zone-panel" class="absolute left-4 overflow-y-auto pointer-events-none" style="top:180px; max-height:50vh; width:190px; scrollbar-width:none;">
+    </div>
+
+    <!-- Cinematic front page + world browser. Visible on first launch; hidden when a save resumes. -->
+    <div id="world-browser" class="rpg-landing absolute inset-0 z-50 overflow-y-auto">
+        <div class="rpg-landing-aurora" aria-hidden="true"></div>
+        <div class="rpg-landing-grain" aria-hidden="true"></div>
+
+        <nav class="rpg-landing-nav" aria-label="RPGy front page">
+            <a href="#landing-top" class="rpg-landing-brand" aria-label="RPGy home">
+                <span class="rpg-brand-mark">R</span>
+                <span><strong>RPGy</strong><small>Living worlds</small></span>
+            </a>
+            <div class="rpg-landing-nav-actions">
+                <button type="button" class="rpg-language-link" onclick="setLanguage('en')">EN</button>
+                <button type="button" class="rpg-language-link" onclick="setLanguage('fr')">FR</button>
+                <button id="landing-byok-badge" type="button" class="rpg-byok-badge">Unlock with your Gemini API Key</button>
+                <button id="landing-continue" type="button" class="rpg-continue-button hidden" aria-label="Continue your saved story">Continue</button>
+            </div>
+        </nav>
+
+        <main id="landing-top">
+            <section class="rpg-hero rpg-hero-intense">
+                <div class="rpg-hero-backdrop" aria-hidden="true">
+                    <img src="/assets/landing/fantasy-action.webp" alt="">
+                    <span class="rpg-hero-backdrop-scrim"></span>
+                </div>
+                <div class="rpg-hero-copy">
+                    <div class="rpg-eyebrow"><span></span> The world reacts. The Party remembers.</div>
+                    <h1>Enter a story<br><em>that needs you.</em></h1>
+                    <p class="rpg-hero-lede">Your Party wants things. Your enemies make plans. Every action rewrites the scene while the Director keeps the story moving toward <strong>you</strong>.</p>
+                    <div class="rpg-hero-actions">
+                        <button id="landing-explore" type="button" class="rpg-primary-cta">Choose your world <span aria-hidden="true">&#8595;</span></button>
+                        <button id="btn-create-own" type="button" class="rpg-secondary-cta">Create your own</button>
+                    </div>
+                    <div class="rpg-proof-row" aria-label="RPGy features">
+                        <div><strong>49</strong><span>authored worlds</span></div>
+                        <div><strong>3</strong><span>independent agents</span></div>
+                        <div><strong>&infin;</strong><span>possible stories</span></div>
+                    </div>
+                </div>
+
+                <div class="rpg-live-stage" aria-label="RPGy gameplay screenshot">
+                    <div class="rpg-live-halo" aria-hidden="true"></div>
+                    <div class="rpg-live-frame">
+                        <div class="rpg-live-chrome">
+                            <span><i></i> Actual RPGy session</span>
+                            <strong>WIZARD SCHOOL / PARTY ACTIVE</strong>
+                        </div>
+                        <button type="button" class="rpg-live-screen" data-feature-concept="Wizard School" aria-label="Enter Wizard School">
+                            <img src="/assets/landing/wizard-party.webp" alt="A live RPGy Wizard School session with the player, Party members, dialogue, and a generated scene">
+                            <span class="rpg-live-screen-shade"></span>
+                        </button>
+                        <div class="rpg-live-status" aria-hidden="true">
+                            <span>Director online</span>
+                            <span>3 voices active</span>
+                            <span>Scene rebuilt</span>
+                        </div>
+                    </div>
+                    <div class="rpg-live-pullquote"><span>PARTY</span>&ldquo;That was not the plan. I like it.&rdquo;</div>
+                </div>
+
+                <div class="rpg-hero-foot" aria-hidden="true"><span>Actual gameplay</span><i></i><span>Every scene generated live</span></div>
+            </section>
+
+            <section id="session-showcase" class="rpg-session-showcase" aria-label="Actual RPGy sessions">
+                <header class="rpg-showcase-heading">
+                    <div class="rpg-eyebrow"><span></span> Captured inside RPGy</div>
+                    <h2>This isn&rsquo;t a trailer.<br><em>This is the game.</em></h2>
+                    <p>Each scene below was built during play: the setting, the cast, the pressure, and the conversation around your next decision.</p>
+                </header>
+
+                <button type="button" class="rpg-session-shot rpg-session-shot-wide" data-feature-concept="Cyber-Samurai Tokyo">
+                    <img src="/assets/landing/cyber-horror.webp" alt="Cyber-Samurai Tokyo session with three Party characters inside a neon shrine">
+                    <span class="rpg-session-vignette"></span>
+                    <span class="rpg-session-number">01</span>
+                    <span class="rpg-session-caption"><small>CYBER-SAMURAI TOKYO</small><strong>Your Party walks into the scene with you.</strong><span>Faces, health, loyalties, private motives, and opinions about everything you do.</span></span>
+                </button>
+
+                <div class="rpg-session-split">
+                    <button type="button" class="rpg-session-shot" data-feature-concept="Roman Legion Frontier">
+                        <img src="/assets/landing/roman-frontier.webp" alt="Photorealistic Roman Legion Frontier session with the player and two companions">
+                        <span class="rpg-session-vignette"></span>
+                        <span class="rpg-session-number">02</span>
+                        <span class="rpg-session-caption"><small>ROMAN LEGION FRONTIER</small><strong>Every world has its own visual language.</strong><span>Photoreal or illustrated, grounded or impossible.</span></span>
+                    </button>
+                    <button type="button" class="rpg-session-shot" data-feature-concept="Medieval High Fantasy">
+                        <img src="/assets/landing/fantasy-action.webp" alt="Explosive Medieval High Fantasy battle with elemental magic and a towering fire demon">
+                        <span class="rpg-session-vignette"></span>
+                        <span class="rpg-session-number">03</span>
+                        <span class="rpg-session-caption"><small>MEDIEVAL HIGH FANTASY</small><strong>Unleash your full power.</strong><span>Push the world hard enough and the entire scene erupts around your decision.</span></span>
+                    </button>
+                </div>
+
+                <div class="rpg-engine-signals" aria-label="How RPGy works">
+                    <article><span>01 / CHOOSE</span><h3>Forty-nine realities</h3><p>Every world opens with a cast, a crisis, and a reason to act now.</p></article>
+                    <article><span>02 / SURVIVE</span><h3>People, not props</h3><p>Your companions remember, want, disagree, flee, steal, protect, and betray.</p></article>
+                    <article><span>03 / DECIDE</span><h3>You remain the center</h3><p>The Director creates pressure, then gives the consequential choice back to you.</p></article>
+                </div>
+            </section>
+
+            <section id="world-catalog" class="rpg-world-catalog">
+                <div class="rpg-catalog-heading">
+                    <div><div class="rpg-eyebrow"><span></span> The world archive</div><h2>Where will you wake up?</h2></div>
+                    <p>Every world includes a Player, two autonomous Party members, an authored opening crisis, and persistent story state.</p>
+                </div>
+                <div id="world-grid" class="rpg-world-grid"></div>
+            </section>
+        </main>
+
+        <footer id="landing-footer" class="rpg-landing-footer">
+            <span>RPGy</span><p>Forty-nine doors. One of them is waiting for you.</p><button type="button" onclick="document.getElementById('landing-top').scrollIntoView({behavior:'smooth'})">Back to top ↑</button>
+            <div class="rpg-live-presence" title="Anonymous game sessions active during the last two minutes">
+                <i aria-hidden="true"></i>
+                <span id="landing-presence-label">CURRENTLY PLAYING:</span>
+                <strong id="landing-presence-count" aria-live="polite">0</strong>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/worldThemes.js"></script>
+    <script src="js/presetRosters.js"></script>
+    <script src="js/zombieLondon.js"></script>
+    <script src="js/dialogueRouting.js"></script>
+    <script src="js/engine.js?v=20260803-live-presence"></script>
+</body>
+</html>
