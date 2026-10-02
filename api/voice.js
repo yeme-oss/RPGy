@@ -11,6 +11,9 @@ module.exports = async (req, res) => {
 
   const { voiceDescription, voiceName } = req.body || {};
   if (!voiceDescription) return res.status(400).json({ error: 'voiceDescription required' });
+  if (!process.env.ELEVENLABS_API_KEY) {
+    return res.status(501).json({ error: 'elevenlabs_not_configured', message: 'Voices and music are optional: set ELEVENLABS_API_KEY to enable them.' });
+  }
 
   try {
     // 1. Check if voice already exists
@@ -56,6 +59,10 @@ module.exports = async (req, res) => {
         }
     }
   } catch (err) {
+    if ([401, 402, 403].includes(err?.statusCode)) {
+      console.warn('ElevenLabs unavailable (%s): %s', err.statusCode, err.message.split('\n')[0]);
+      return res.status(501).json({ error: 'elevenlabs_not_configured', message: 'Your ElevenLabs key was refused (check its permissions and credits).' });
+    }
     console.error("Voice error:", err);
     res.status(500).json({ error: 'Failed to manage voice', detail: err.message });
   }

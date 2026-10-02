@@ -56,7 +56,7 @@ npm run dev              # http://localhost:3000
 
 Open the page, click **UNLOCK WITH YOUR GEMINI API KEY**, paste your key, pick a world. `server.js` is a tiny zero-dependency server that serves the site and runs the `api/` routes. To host a public copy, the project also deploys to Vercel as-is (`vercel deploy`).
 
-**Optional services** (see [`.env.example`](.env.example)): an Upstash Redis database enables share links and the live player counter; ElevenLabs enables voices and music; Replicate enables talking-head video.
+**Optional services** (see [`.env.example`](.env.example)): an Upstash Redis database enables share links and the live player counter; ElevenLabs enables voices and music (the key needs the text-to-speech, voice-design and music permissions, and a plan with credits; if it's refused, RPGy just plays without sound); Replicate enables talking-head video.
 
 ## How it works
 

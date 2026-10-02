@@ -4,6 +4,9 @@ const RPGY_GEMINI_API_ROUTES = new Set(['/api/init', '/api/chat', '/api/director
 const GEMINI_BYOK_IMAGE_MODEL = 'gemini-3.1-flash-lite-image';
 const GEMINI_BYOK_INTERACTIONS_URL = 'https://generativelanguage.googleapis.com/v1beta/interactions';
 const rpgyNativeFetch = window.fetch.bind(window);
+// Voices and music need an optional ElevenLabs key on the server. When it is missing the
+// server answers 501 once and the client stops asking (the game works fine without them).
+let elevenLabsOff = false;
 let activeGeminiByokKey = localStorage.getItem(RPGY_GEMINI_BYOK_STORAGE) || '';
 let activeShareId = String(new URLSearchParams(window.location.search).get('share') || '').trim();
 let creditState = { billingEnabled: false, licenseStatus: 'checking', licenseValid: false, remaining: null, limit: 0, checkoutUrl: '', byok: Boolean(activeGeminiByokKey), shared: false };
@@ -484,7 +487,7 @@ function stopMusic() {
 }
 
 async function fetchWorldMusic(prompt) {
-    if (!prompt || musicState.promptInFlight === prompt) return;
+    if (elevenLabsOff || !prompt || musicState.promptInFlight === prompt) return;
     if (musicState.promptLoaded === prompt && musicState.blobUrl) {
         playLoadedMusic();
         return;
@@ -497,6 +500,7 @@ async function fetchWorldMusic(prompt) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt, musicLengthMs: 120000 })
         });
+        if (res.status === 501) { elevenLabsOff = true; musicState.promptInFlight = null; setMusicStatus(''); return; }
         if (!res.ok) throw new Error(`Music API ${res.status}`);
         const blob = await res.blob();
 
@@ -1381,7 +1385,7 @@ function* walkAllNpcs() {
 }
 
 async function ensureVoiceFor(npc) {
-    if (!npc?.voiceDescription) return;
+    if (elevenLabsOff || !npc?.voiceDescription) return;
     const voices = ensureVoicesContainer();
     const entry = voices[npc.name];
     if (entry && (entry.status === 'ready' || entry.status === 'creating')) return;
@@ -1392,6 +1396,7 @@ async function ensureVoiceFor(npc) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ voiceDescription: npc.voiceDescription, voiceName: npc.name })
         });
+        if (res.status === 501) { elevenLabsOff = true; delete voices[npc.name]; return; }
         const body = await res.json();
         if (!res.ok) {
             throw new Error(`voice api ${res.status}: ${body.error || JSON.stringify(body)}`);
@@ -1488,6 +1493,7 @@ async function processNarrativeDialogue(narrative) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ voiceId: v.voiceId, text: utt.text })
             });
+            if (res.status === 501) { elevenLabsOff = true; return; }
             if (!res.ok) throw new Error(`tts api ${res.status}`);
             const blob = await res.blob();
             if (runId !== dialogueRunId) return;

@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   if (!prompt) return res.status(400).json({ error: 'prompt required' });
 
   if (!process.env.ELEVENLABS_API_KEY) {
-    return res.status(500).json({ error: 'ELEVENLABS_API_KEY not configured' });
+    return res.status(501).json({ error: 'elevenlabs_not_configured', message: 'Voices and music are optional: set ELEVENLABS_API_KEY to enable them.' });
   }
 
   try {
@@ -29,6 +29,10 @@ module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     res.status(200).send(buffer);
   } catch (err) {
+    if ([401, 402, 403].includes(err?.statusCode)) {
+      console.warn('ElevenLabs unavailable (%s): %s', err.statusCode, err.message.split('\n')[0]);
+      return res.status(501).json({ error: 'elevenlabs_not_configured', message: 'Your ElevenLabs key was refused (check its permissions and credits).' });
+    }
     console.error("Music generation error:", err);
     res.status(500).json({ error: 'Failed to generate music', detail: err.message });
   }
