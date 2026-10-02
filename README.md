@@ -46,21 +46,22 @@ RPGy is free. There is no account, no credit counter and no paywall. You paste *
 
 ## Run it yourself
 
-You need [Node.js](https://nodejs.org/) 20+ and the [Vercel CLI](https://vercel.com/docs/cli) (the API routes are serverless functions).
+You need [Node.js](https://nodejs.org/) 20.12+. No account, no Vercel login.
 
 ```bash
 npm install
 cp .env.example .env     # everything in it is optional
-npx vercel dev           # http://localhost:3000
+npm run dev              # http://localhost:3000
 ```
 
-Open the page, click **UNLOCK WITH YOUR GEMINI API KEY**, paste your key, pick a world. To host your own copy, `vercel deploy` works as-is.
+Open the page, click **UNLOCK WITH YOUR GEMINI API KEY**, paste your key, pick a world. `server.js` is a tiny zero-dependency server that serves the site and runs the `api/` routes. To host a public copy, the project also deploys to Vercel as-is (`vercel deploy`).
 
 **Optional services** (see [`.env.example`](.env.example)): an Upstash Redis database enables share links and the live player counter; ElevenLabs enables voices and music; Replicate enables talking-head video.
 
 ## How it works
 
 ```
+server.js               Local dev server (static files + the api/ routes)
 index.html, css/, js/   Vanilla JS + Tailwind front end (js/engine.js holds the game state)
 api/                    Serverless routes: prompt building and validation for the Director,
                         party turns, dialogue, portraits, share links, presence
