@@ -4,7 +4,7 @@
 
 <p align="center">
   <b>A text-RPG engine with a Game Master brain. Describe any world; play it, illustrated, with a Party that argues back.</b><br>
-  <sub>Play it at <a href="https://www.rpgy.app/">rpgy.app</a> · Part of <a href="https://github.com/yeme-oss/Trinifty"><b>Trinifty</b></a> - all nifty stuff - all for free</sub>
+  <sub>Part of <a href="https://github.com/yeme-oss/Trinifty"><b>Trinifty</b></a> - all nifty stuff - all for free</sub>
 </p>
 
 <p align="center">
