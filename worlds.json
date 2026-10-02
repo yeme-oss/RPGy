@@ -35,8 +35,8 @@
   },
   {
     "id": 3,
-    "en": { "title": "Zerg Hive Breach", "desc": "Survive the infestation in deep space." },
-    "fr": { "title": "Invasion Zergs", "desc": "Survivez à l'infestation dans l'espace lointain." },
+    "en": { "title": "Xeno Hive Breach", "desc": "Survive the infestation in deep space." },
+    "fr": { "title": "Invasion Xéno", "desc": "Survivez à l'infestation dans l'espace lointain." },
     "genre": "Sci-Fi Horror",
     "subgenre": "Alien Survival",
     "dangerosity": 9,

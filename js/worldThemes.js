@@ -1,7 +1,7 @@
 const worldThemes = [
     { en: { title: "WW2: The Last Bunker", desc: "Defend your post in the French countryside." }, fr: { title: "2GM : Le Dernier Bunker", desc: "Défendez votre poste dans la campagne française." } },
     { en: { title: "Cyber-Samurai Tokyo", desc: "Honor and steel in a neon-drenched future." }, fr: { title: "Cyber-Samouraï Tokyo", desc: "Honneur et acier dans un futur néon." } },
-    { en: { title: "Zerg Hive Breach", desc: "Survive the infestation in deep space." }, fr: { title: "Invasion Zergs", desc: "Survivez à l'infestation dans l'espace lointain." } },
+    { en: { title: "Xeno Hive Breach", desc: "Survive the infestation in deep space." }, fr: { title: "Invasion Xéno", desc: "Survivez à l'infestation dans l'espace lointain." } },
     { en: { title: "Zombie London", desc: "Escaping the undead in the fog." }, fr: { title: "Londres Zombie", desc: "Échapper aux morts-vivants dans le brouillard." } },
     { en: { title: "Mars Colonist", desc: "Build a life on the red planet." }, fr: { title: "Colon de Mars", desc: "Construisez une vie sur la planète rouge." } },
     // ... (Generating 50 themes)
